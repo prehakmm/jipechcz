@@ -56,3 +56,27 @@ add_filter( 'jipech_contact', function ( $data ) {
 - **Barvy** jsou v OKLCH (jako originál). Globální design tokeny jsou v `assets/css/theme.css` (kompilováno z `../build/input.css`).
 - **Rekompilace CSS** (jen při zásahu do tříd/tokenů): ve složce `../build/` spusťte `./tailwindcss -i input.css -o ../jipech-theme/assets/css/theme.css --minify`.
 - **Statická referenční verze** webu je v `../build/static/` (index.html, kuchyne.html, b2b.html) – slouží pro vizuální porovnání 1:1.
+
+## Automatické aktualizace z GitHubu (Git Updater)
+
+Téma je připravené k aktualizacím přímo z repozitáře **github.com/prehakmm/jipechcz** –
+WordPress si stahuje novou verzi přes HTTPS (žádné FTP, funguje i s geo-omezením FTP účtu).
+
+**Jednorázové nastavení ve WordPressu:**
+1. Nainstalujte plugin **Git Updater** (zdarma, <https://git-updater.com> → stáhnout ZIP → Pluginy → Nahrát plugin → Aktivovat).
+2. **Git Updater → Install Theme** → zadejte `prehakmm/jipechcz`, větev `main` → *Install* → *Aktivovat*.
+   (Tím se téma nainstaluje rovnou z GitHubu; není potřeba zip ani FTP.)
+
+**Automatické zvyšování verze (volitelné, doporučené):**
+GitHub Action po každém pushi zvýší patch verzi ve `style.css`, aby WordPress viděl aktualizaci.
+Soubor workflow je připravený lokálně v `.github/workflows/auto-version.yml`, ale **do gitu se neposílá**
+(běžný přístupový token nemá scope `workflow`). Vytvořte ho proto **jednou přes web GitHubu**:
+
+1. Repo → *Add file → Create new file* → název `.github/workflows/auto-version.yml`
+2. Vložte obsah z lokálního souboru `.github/workflows/auto-version.yml` → *Commit*
+3. Repo → *Settings → Actions → General → Workflow permissions* → **Read and write permissions** → *Save*
+
+**Jak to pak funguje:**
+- Každý `git push` do `main` spustí tuto Action → zvýší verzi → Git Updater ve WordPressu nabídne **Aktualizovat**.
+- Bez workflow to funguje taky, jen verzi ve `style.css` zvýšíte ručně před pushem, když chcete vydat aktualizaci.
+- Okamžitou kontrolu verzí vyvoláte přes *Nástroje → Git Updater → Refresh Cache*.

@@ -2,3 +2,5 @@
 *.log
 .ftp-deploy-sync-state.json
 node_modules/
+# workflow se spravuje přes web GitHubu (token nemá scope 'workflow')
+.github/
