@@ -1,0 +1,12 @@
+/*
+Theme Name: Truhlářství JIPECH
+Theme URI: https://www.jipech.cz
+Description: Šablona na míru pro Truhlářství Jiří Pecháček (JIPECH) – „Warm Craft Heritage". 1:1 přepis původního React/Tailwind webu do nativního WordPressu. Galerie přes CPT „Realizace", poptávkové formuláře přes wp_mail (SMTP plugin), obrázky ve WP Media Library.
+Author: Pavel Tomáš Řehák
+Version: 1.0.0
+Requires at least: 6.2
+Requires PHP: 7.4
+Text Domain: jipech
+*/
+
+/* Vlastní styly a Tailwind jsou načítány přes assets/css/theme.css (viz inc/enqueue.php). */

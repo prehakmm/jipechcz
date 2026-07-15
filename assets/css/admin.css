@@ -1,0 +1,45 @@
+/* Admin – galerie metabox */
+.jipech-gallery-list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin: 12px 0;
+	padding: 0;
+	list-style: none;
+	min-height: 20px;
+}
+.jipech-gallery-list li {
+	position: relative;
+	width: 90px;
+	height: 90px;
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+	overflow: hidden;
+	cursor: move;
+	background: #f6f7f7;
+}
+.jipech-gallery-list li img {
+	width: 90px;
+	height: 90px;
+	object-fit: cover;
+	display: block;
+}
+.jipech-gallery-list .jipech-remove {
+	position: absolute;
+	top: 2px;
+	right: 2px;
+	width: 20px;
+	height: 20px;
+	line-height: 18px;
+	text-align: center;
+	border: none;
+	border-radius: 50%;
+	background: rgba(0, 0, 0, 0.65);
+	color: #fff;
+	font-size: 15px;
+	cursor: pointer;
+	padding: 0;
+}
+.jipech-gallery-list .jipech-remove:hover {
+	background: #d63638;
+}
