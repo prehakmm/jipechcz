@@ -45,6 +45,7 @@ require_once JIPECH_DIR . '/inc/cpt.php';
 require_once JIPECH_DIR . '/inc/gallery.php';
 require_once JIPECH_DIR . '/inc/forms.php';
 require_once JIPECH_DIR . '/inc/importer.php';
+require_once JIPECH_DIR . '/inc/importer-fotky.php';
 
 // Aktualizace tématu přímo z GitHubu (bez pluginu) – jen v administraci.
 if ( is_admin() ) {

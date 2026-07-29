@@ -36,65 +36,79 @@ function jipech_img_url( $id, $size = 'large' ) {
 function jipech_get_home_gallery() {
 	$out = array();
 
-	foreach ( jipech_gallery_categories() as $slug => $label ) {
-		$images = array();
+	$terms = get_terms( array(
+		'taxonomy'   => 'jipech_kategorie',
+		'hide_empty' => false,
+	) );
+	if ( is_wp_error( $terms ) || ! $terms ) {
+		return $out;
+	}
 
-		// Přednostně realizace označená „home" v této kategorii.
-		$q = new WP_Query( array(
-			'post_type'      => 'jipech_realizace',
-			'posts_per_page' => -1,
-			'orderby'        => 'menu_order title',
-			'order'          => 'ASC',
-			'no_found_rows'  => true,
-			'tax_query'      => array(
-				array(
-					'taxonomy' => 'jipech_kategorie',
-					'field'    => 'slug',
-					'terms'    => $slug,
-				),
-			),
-			'meta_query'     => array(
-				array( 'key' => '_jipech_home', 'value' => '1' ),
-			),
-		) );
-
-		// Fallback: pokud žádná „home" realizace, vezmi všechny v kategorii.
-		if ( ! $q->have_posts() ) {
-			$q = new WP_Query( array(
-				'post_type'      => 'jipech_realizace',
-				'posts_per_page' => -1,
-				'orderby'        => 'menu_order title',
-				'order'          => 'ASC',
-				'no_found_rows'  => true,
-				'tax_query'      => array(
-					array(
-						'taxonomy' => 'jipech_kategorie',
-						'field'    => 'slug',
-						'terms'    => $slug,
-					),
-				),
-			) );
+	// Pořadí: dle term meta jipech_order, pak dle definovaného pořadí kategorií.
+	$defined = array_keys( jipech_gallery_categories() );
+	usort( $terms, function ( $a, $b ) use ( $defined ) {
+		$oa = get_term_meta( $a->term_id, 'jipech_order', true );
+		$ob = get_term_meta( $b->term_id, 'jipech_order', true );
+		$oa = ( '' === $oa ) ? 999 : (int) $oa;
+		$ob = ( '' === $ob ) ? 999 : (int) $ob;
+		if ( $oa !== $ob ) {
+			return $oa - $ob;
 		}
+		$ia = array_search( $a->slug, $defined, true );
+		$ib = array_search( $b->slug, $defined, true );
+		$ia = ( false === $ia ) ? 999 : $ia;
+		$ib = ( false === $ib ) ? 999 : $ib;
+		return $ia - $ib;
+	} );
 
-		foreach ( $q->posts as $p ) {
-			foreach ( jipech_realizace_ids( $p->ID ) as $id ) {
-				$url = jipech_img_url( $id );
-				if ( $url ) {
-					$images[] = $url;
-				}
-			}
-		}
-		wp_reset_postdata();
-
+	foreach ( $terms as $term ) {
+		$images = jipech_term_images( $term->slug );
 		if ( $images ) {
 			$out[] = array(
-				'label'  => $label,
-				'images' => array_values( array_unique( $images ) ),
+				'label'  => $term->name,
+				'images' => $images,
 			);
 		}
 	}
 
 	return $out;
+}
+
+/**
+ * Obrázky kategorie pro úvodní galerii – přednostně z „home" realizací, jinak ze všech.
+ */
+function jipech_term_images( $slug ) {
+	$images = array();
+
+	$base = array(
+		'post_type'      => 'jipech_realizace',
+		'posts_per_page' => -1,
+		'orderby'        => 'menu_order title',
+		'order'          => 'ASC',
+		'no_found_rows'  => true,
+		'tax_query'      => array(
+			array( 'taxonomy' => 'jipech_kategorie', 'field' => 'slug', 'terms' => $slug ),
+		),
+	);
+
+	$q = new WP_Query( array_merge( $base, array(
+		'meta_query' => array( array( 'key' => '_jipech_home', 'value' => '1' ) ),
+	) ) );
+	if ( ! $q->have_posts() ) {
+		$q = new WP_Query( $base );
+	}
+
+	foreach ( $q->posts as $p ) {
+		foreach ( jipech_realizace_ids( $p->ID ) as $id ) {
+			$url = jipech_img_url( $id );
+			if ( $url ) {
+				$images[] = $url;
+			}
+		}
+	}
+	wp_reset_postdata();
+
+	return array_values( array_unique( $images ) );
 }
 
 /**

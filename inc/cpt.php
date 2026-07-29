@@ -20,11 +20,14 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function jipech_gallery_categories() {
 	return array(
-		'kuchyne' => 'Kuchyně',
-		'obyvaci' => 'Obývací pokoje',
-		'schody'  => 'Schody',
-		'stoly'   => 'Stoly',
-		'pergoly' => 'Pergoly',
+		'kuchyne'  => 'Kuchyně',
+		'skrine'   => 'Skříně a vestavěný nábytek',
+		'knihovny' => 'Knihovny, police a regály',
+		'obyvaci'  => 'Obývací pokoje',
+		'schody'   => 'Schody, dveře a okna',
+		'stoly'    => 'Stoly',
+		'postele'  => 'Postele',
+		'koupelny' => 'Koupelnový nábytek',
 	);
 }
 
