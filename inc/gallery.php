@@ -29,22 +29,19 @@ function jipech_img_url( $id, $size = 'large' ) {
 }
 
 /**
- * Data úvodní galerie: 5 kategorií, každá se sadou obrázků.
+ * Kategorie galerie seřazené dle term meta jipech_order, pak dle definovaného pořadí.
  *
- * @return array [ ['label'=>..,'images'=>[url,..]], .. ]
+ * @param bool $hide_empty Skrýt kategorie bez realizací.
+ * @return WP_Term[]
  */
-function jipech_get_home_gallery() {
-	$out = array();
-
+function jipech_ordered_terms( $hide_empty = true ) {
 	$terms = get_terms( array(
 		'taxonomy'   => 'jipech_kategorie',
-		'hide_empty' => false,
+		'hide_empty' => $hide_empty,
 	) );
 	if ( is_wp_error( $terms ) || ! $terms ) {
-		return $out;
+		return array();
 	}
-
-	// Pořadí: dle term meta jipech_order, pak dle definovaného pořadí kategorií.
 	$defined = array_keys( jipech_gallery_categories() );
 	usort( $terms, function ( $a, $b ) use ( $defined ) {
 		$oa = get_term_meta( $a->term_id, 'jipech_order', true );
@@ -60,8 +57,18 @@ function jipech_get_home_gallery() {
 		$ib = ( false === $ib ) ? 999 : $ib;
 		return $ia - $ib;
 	} );
+	return $terms;
+}
 
-	foreach ( $terms as $term ) {
+/**
+ * Data úvodní galerie: kategorie, každá se sadou obrázků.
+ *
+ * @return array [ ['label'=>..,'images'=>[url,..]], .. ]
+ */
+function jipech_get_home_gallery() {
+	$out = array();
+
+	foreach ( jipech_ordered_terms( false ) as $term ) {
 		$images = jipech_term_images( $term->slug );
 		if ( $images ) {
 			$out[] = array(

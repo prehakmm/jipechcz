@@ -295,6 +295,17 @@
     });
   }
 
+  /* ---------- Lightbox mřížky (stránky kategorií) ---------- */
+  function initLightboxGrids() {
+    document.querySelectorAll("[data-lightbox-grid]").forEach(function (grid) {
+      var cells = Array.prototype.slice.call(grid.querySelectorAll("[data-full]"));
+      var imgs = cells.map(function (c) { return c.getAttribute("data-full"); });
+      cells.forEach(function (c, i) {
+        c.addEventListener("click", function () { window.JIPECH.openLightbox(imgs, i); });
+      });
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     initReveal();
     initMobileMenu();
@@ -304,5 +315,6 @@
     initSliders();
     initDropzones();
     initForms();
+    initLightboxGrids();
   });
 })();

@@ -31,6 +31,15 @@ function jipech_gallery_categories() {
 	);
 }
 
+// Po změně verze tématu jednou přegeneruj přepisovací pravidla (kvůli archivům /realizace/).
+add_action( 'init', 'jipech_maybe_flush_rewrite', 99 );
+function jipech_maybe_flush_rewrite() {
+	if ( get_option( 'jipech_rw_version' ) !== JIPECH_VERSION ) {
+		flush_rewrite_rules( false );
+		update_option( 'jipech_rw_version', JIPECH_VERSION );
+	}
+}
+
 add_action( 'init', 'jipech_register_realizace' );
 function jipech_register_realizace() {
 
@@ -38,17 +47,19 @@ function jipech_register_realizace() {
 		'jipech_kategorie',
 		'jipech_realizace',
 		array(
-			'labels'            => array(
+			'labels'             => array(
 				'name'          => __( 'Kategorie galerie', 'jipech' ),
 				'singular_name' => __( 'Kategorie', 'jipech' ),
 				'menu_name'     => __( 'Kategorie', 'jipech' ),
 			),
-			'hierarchical'      => true,
-			'public'            => false,
-			'show_ui'           => true,
-			'show_admin_column' => true,
-			'show_in_rest'      => true,
-			'rewrite'           => false,
+			'hierarchical'       => true,
+			'public'             => true,
+			'publicly_queryable' => true,
+			'show_ui'            => true,
+			'show_in_nav_menus'  => true,
+			'show_admin_column'  => true,
+			'show_in_rest'       => true,
+			'rewrite'            => array( 'slug' => 'realizace', 'with_front' => false ),
 		)
 	);
 

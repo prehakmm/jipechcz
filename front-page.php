@@ -52,64 +52,7 @@ get_header();
 		<span class="sm:hidden">Zavolat</span>
 	</a>
 
-	<!-- ===== NAVIGATION ===== -->
-	<nav class="fixed top-0 left-0 right-0 z-40 transition-all duration-300" style="background-color: oklch(0.99 0.005 80); box-shadow: 0 2px 20px oklch(0.25 0.04 40 / 0.10);">
-		<div class="container flex items-center justify-between py-3">
-			<a href="#hero" class="flex items-center gap-3">
-				<img src="<?php echo esc_url( $logo ); ?>" alt="JIPECH Truhlářství" class="h-14 w-auto" />
-			</a>
-			<div class="hidden md:flex items-center gap-7">
-				<a href="#sluzby" class="text-sm font-semibold tracking-widest uppercase transition-colors hover:opacity-60" style="font-family: 'Montserrat', sans-serif; color: oklch(0.22 0.03 40);">Služby</a>
-				<a href="#reference" class="text-sm font-semibold tracking-widest uppercase transition-colors hover:opacity-60" style="font-family: 'Montserrat', sans-serif; color: oklch(0.22 0.03 40);">Reference</a>
-				<a href="#o-nas" class="text-sm font-semibold tracking-widest uppercase transition-colors hover:opacity-60" style="font-family: 'Montserrat', sans-serif; color: oklch(0.22 0.03 40);">O nás</a>
-				<a href="#kontakt" class="text-sm font-semibold tracking-widest uppercase transition-colors hover:opacity-60" style="font-family: 'Montserrat', sans-serif; color: oklch(0.22 0.03 40);">Kontakt</a>
-				<div class="relative" data-dropdown>
-					<a href="#galerie" class="text-sm font-semibold tracking-widest uppercase transition-colors hover:opacity-60 flex items-center gap-1" style="font-family: 'Montserrat', sans-serif; color: oklch(0.22 0.03 40);">
-						Galerie
-						<svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><path d="M6 8L1 3h10z"></path></svg>
-					</a>
-					<div class="absolute top-full left-0 mt-1 bg-white rounded-lg shadow-xl border border-amber-100 py-2 min-w-[160px] z-50" data-dropdown-menu hidden>
-						<a href="#galerie" class="block w-full text-left px-4 py-2 text-sm font-medium hover:bg-amber-50 transition-colors" style="font-family: 'Montserrat', sans-serif; color: oklch(0.35 0.04 45);">Všechny realizace</a>
-						<a href="<?php echo esc_url( $kuchyne_url ); ?>" class="flex items-center gap-2 px-4 py-2 text-sm font-medium hover:bg-amber-50 transition-colors" style="font-family: 'Montserrat', sans-serif; color: oklch(0.50 0.10 50);">
-							<span style="color: oklch(0.62 0.12 55);"><?php jipech_service_icon( 'kuchyne', '', 'width:16px;height:16px;' ); ?></span>
-							Kuchyně
-						</a>
-					</div>
-				</div>
-				<a href="<?php echo esc_url( $b2b_url ); ?>" class="flex items-center gap-1.5 text-sm font-semibold tracking-widest uppercase transition-colors hover:opacity-60" style="font-family: 'Montserrat', sans-serif; color: oklch(0.32 0.09 145);">
-					<?php jipech_icon( 'building2', 14 ); ?>
-					Pro firmy
-				</a>
-				<a href="<?php echo esc_attr( $phone_href ); ?>" class="flex items-center gap-2 px-5 py-2.5 rounded text-sm font-bold transition-all hover:scale-105" style="background-color: oklch(0.62 0.12 55); color: white; font-family: 'Montserrat', sans-serif;">
-					<?php jipech_icon( 'phone', 15 ); ?>
-					Zavolejte nám
-				</a>
-			</div>
-			<button class="md:hidden p-2" data-mobile-toggle aria-label="Menu">
-				<span data-icon-menu><?php jipech_icon( 'menu', 24 ); ?></span>
-				<span data-icon-close hidden><?php jipech_icon( 'x', 24 ); ?></span>
-			</button>
-		</div>
-		<div class="md:hidden border-t" data-mobile-menu hidden style="background-color: oklch(0.99 0.005 80); border-color: oklch(0.87 0.03 65);">
-			<div class="container py-4 flex flex-col gap-4">
-				<a href="#sluzby" class="text-left text-sm font-semibold tracking-widest uppercase py-2" style="font-family: 'Montserrat', sans-serif;">Služby</a>
-				<a href="#reference" class="text-left text-sm font-semibold tracking-widest uppercase py-2" style="font-family: 'Montserrat', sans-serif;">Reference</a>
-				<a href="#o-nas" class="text-left text-sm font-semibold tracking-widest uppercase py-2" style="font-family: 'Montserrat', sans-serif;">O nás</a>
-				<a href="#kontakt" class="text-left text-sm font-semibold tracking-widest uppercase py-2" style="font-family: 'Montserrat', sans-serif;">Kontakt</a>
-				<a href="<?php echo esc_url( $kuchyne_url ); ?>" class="text-left text-sm font-semibold tracking-widest uppercase py-2 flex items-center gap-2" style="font-family: 'Montserrat', sans-serif; color: oklch(0.50 0.10 50);">
-					<span style="color: oklch(0.62 0.12 55);"><?php jipech_service_icon( 'kuchyne', '', 'width:16px;height:16px;' ); ?></span>
-					Galerie Kuchyně
-				</a>
-				<a href="<?php echo esc_url( $b2b_url ); ?>" class="text-left text-sm font-semibold tracking-widest uppercase py-2 flex items-center gap-2" style="font-family: 'Montserrat', sans-serif; color: oklch(0.32 0.09 145);">
-					<?php jipech_icon( 'building2', 14 ); ?> Pro firmy
-				</a>
-				<a href="<?php echo esc_attr( $phone_href ); ?>" class="flex items-center justify-center gap-2 px-5 py-3 rounded font-bold text-white" style="background-color: oklch(0.32 0.09 145); font-family: 'Montserrat', sans-serif;">
-					<?php jipech_icon( 'phone', 18 ); ?>
-					<?php echo esc_html( $phone ); ?>
-				</a>
-			</div>
-		</div>
-	</nav>
+	<?php get_template_part( 'template-parts/site-nav' ); ?>
 
 	<!-- ===== HERO ===== -->
 	<section id="hero" class="relative min-h-screen flex items-center overflow-hidden">
@@ -278,8 +221,8 @@ get_header();
 	<section id="galerie" class="py-20">
 		<div class="container">
 			<div class="text-center mb-10">
-				<p class="section-label mb-3">Naše realizace</p>
-				<h2 class="text-4xl md:text-5xl font-bold" style="font-family: 'Playfair Display', serif;">Galerie nábytku</h2>
+				<p class="section-label mb-3">Galerie</p>
+				<h2 class="text-4xl md:text-5xl font-bold" style="font-family: 'Playfair Display', serif;">Realizace</h2>
 				<hr class="wood-divider mt-6 max-w-xs mx-auto" />
 			</div>
 			<div class="flex flex-wrap justify-center gap-3 mb-8" data-gallery-tabs data-gallery-json="<?php echo esc_attr( $gallery_json ); ?>"></div>
@@ -516,38 +459,7 @@ get_header();
 		</div>
 	</section>
 
-	<!-- ===== FOOTER ===== -->
-	<footer style="background-color: oklch(0.18 0.03 40);" class="py-10">
-		<div class="container">
-			<div class="grid sm:grid-cols-3 gap-8 mb-8">
-				<div>
-					<img src="<?php echo esc_url( $logo ); ?>" alt="JIPECH" class="h-16 w-auto mb-4" style="filter: brightness(1.2);" />
-					<p class="text-sm leading-relaxed" style="color: oklch(0.65 0.02 60);">Truhlářství Jiří Pecháček – poctivá řemeslná výroba nábytku na míru od roku 1997.</p>
-				</div>
-				<div>
-					<h4 class="text-sm font-bold uppercase tracking-wider mb-4" style="font-family: 'Montserrat', sans-serif; color: oklch(0.62 0.12 55);">Navigace</h4>
-					<ul class="space-y-2">
-						<li><a href="#sluzby" class="text-sm hover:underline" style="color: oklch(0.72 0.02 70);">Služby</a></li>
-						<li><a href="#reference" class="text-sm hover:underline" style="color: oklch(0.72 0.02 70);">Reference</a></li>
-						<li><a href="#o-nas" class="text-sm hover:underline" style="color: oklch(0.72 0.02 70);">O nás</a></li>
-						<li><a href="#kontakt" class="text-sm hover:underline" style="color: oklch(0.72 0.02 70);">Kontakt</a></li>
-						<li><a href="<?php echo esc_url( $b2b_url ); ?>" class="text-sm hover:underline flex items-center gap-1.5" style="color: oklch(0.72 0.02 70);"><?php jipech_icon( 'building2', 13 ); ?> Pro firmy (B2B)</a></li>
-					</ul>
-				</div>
-				<div>
-					<h4 class="text-sm font-bold uppercase tracking-wider mb-4" style="font-family: 'Montserrat', sans-serif; color: oklch(0.62 0.12 55);">Kontakt</h4>
-					<div class="space-y-3">
-						<div class="flex items-center gap-2"><?php jipech_icon( 'phone', 14, '', 'color: oklch(0.62 0.12 55);' ); ?><a href="<?php echo esc_attr( $phone_href ); ?>" class="text-sm font-bold hover:underline" style="color: white;"><?php echo esc_html( $phone ); ?></a></div>
-						<div class="flex items-center gap-2"><?php jipech_icon( 'mail', 14, '', 'color: oklch(0.62 0.12 55);' ); ?><a href="mailto:<?php echo esc_attr( $email ); ?>" class="text-sm hover:underline" style="color: oklch(0.72 0.02 70);"><?php echo esc_html( $email ); ?></a></div>
-						<div class="flex items-start gap-2"><?php jipech_icon( 'map-pin', 14, 'mt-0.5 shrink-0', 'color: oklch(0.62 0.12 55);' ); ?><span class="text-sm" style="color: oklch(0.72 0.02 70);"><?php echo esc_html( jipech_contact( 'address_line1' ) ); ?><br /><?php echo esc_html( jipech_contact( 'address_line2' ) ); ?></span></div>
-					</div>
-				</div>
-			</div>
-			<div class="border-t pt-6 text-center" style="border-color: oklch(0.28 0.03 40);">
-				<p class="text-xs" style="color: oklch(0.50 0.02 50);">© <?php echo esc_html( gmdate( 'Y' ) ); ?> JIPECH – Truhlářství Jiří Pecháček. Všechna práva vyhrazena.</p>
-			</div>
-		</div>
-	</footer>
+	<?php get_template_part( 'template-parts/site-footer' ); ?>
 </div>
 <?php
 get_footer();
