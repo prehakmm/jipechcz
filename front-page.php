@@ -22,21 +22,22 @@ $form_err    = isset( $_GET['jipech_error'] ) ? sanitize_text_field( wp_unslash(
 $post_url    = esc_url( admin_url( 'admin-post.php' ) );
 $nonce       = wp_create_nonce( 'jipech_form' );
 
+// 'cat' = slug kategorie realizací, na kterou dlaždice odkazuje (kde existuje).
 $services = array(
-	array( 'name' => 'Kuchyně', 'key' => 'kuchyne', 'link' => $kuchyne_url ),
-	array( 'name' => 'Knihovny', 'key' => 'knihovny' ),
-	array( 'name' => 'Vestavěný nábytek', 'key' => 'vestaveny' ),
-	array( 'name' => 'Šatní skříně', 'key' => 'satni' ),
-	array( 'name' => 'Úložné prostory', 'key' => 'ulozne' ),
-	array( 'name' => 'Obývací pokoje', 'key' => 'obyvaci' ),
+	array( 'name' => 'Kuchyně', 'key' => 'kuchyne', 'cat' => 'kuchyne' ),
+	array( 'name' => 'Knihovny', 'key' => 'knihovny', 'cat' => 'knihovny' ),
+	array( 'name' => 'Vestavěný nábytek', 'key' => 'vestaveny', 'cat' => 'skrine' ),
+	array( 'name' => 'Šatní skříně', 'key' => 'satni', 'cat' => 'skrine' ),
+	array( 'name' => 'Úložné prostory', 'key' => 'ulozne', 'cat' => 'skrine' ),
+	array( 'name' => 'Obývací pokoje', 'key' => 'obyvaci', 'cat' => 'obyvaci' ),
 	array( 'name' => 'Pracovny', 'key' => 'pracovny' ),
 	array( 'name' => 'Kanceláře', 'key' => 'kancelare' ),
 	array( 'name' => 'Dětské pokoje', 'key' => 'detske' ),
-	array( 'name' => 'Lůžkový nábytek', 'key' => 'luzko' ),
-	array( 'name' => 'Dveře', 'key' => 'dvere' ),
-	array( 'name' => 'Schodiště', 'key' => 'schodiste' ),
-	array( 'name' => 'Okna', 'key' => 'okna' ),
-	array( 'name' => 'Stoly', 'key' => 'stoly' ),
+	array( 'name' => 'Lůžkový nábytek', 'key' => 'luzko', 'cat' => 'postele' ),
+	array( 'name' => 'Dveře', 'key' => 'dvere', 'cat' => 'schody' ),
+	array( 'name' => 'Schodiště', 'key' => 'schodiste', 'cat' => 'schody' ),
+	array( 'name' => 'Okna', 'key' => 'okna', 'cat' => 'schody' ),
+	array( 'name' => 'Stoly', 'key' => 'stoly', 'cat' => 'stoly' ),
 	array( 'name' => 'Altánky a pergoly', 'key' => 'altanky' ),
 	array( 'name' => 'Dřevěné obložení', 'key' => 'oblozeni' ),
 );
@@ -125,16 +126,21 @@ get_header();
 			</div>
 			<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-4">
 				<?php foreach ( $services as $svc ) :
-					$is_link = ! empty( $svc['link'] );
-					$tag     = $is_link ? 'a' : 'div';
-					$attrs   = $is_link ? ' href="' . esc_url( $svc['link'] ) . '"' : '';
-					$cursor  = $is_link ? 'cursor-pointer group' : 'cursor-default';
-					?>
-					<<?php echo $tag; // phpcs:ignore ?><?php echo $attrs; // phpcs:ignore ?> class="flex flex-col items-center text-center p-4 rounded-lg transition-all hover:shadow-md <?php echo esc_attr( $cursor ); ?>" data-reveal style="background-color: oklch(0.99 0.005 80);">
+					$link = '';
+						if ( ! empty( $svc['cat'] ) ) {
+							$t = get_term_by( 'slug', $svc['cat'], 'jipech_kategorie' );
+							if ( $t && ! is_wp_error( $t ) ) {
+								$tl = get_term_link( $t );
+								if ( ! is_wp_error( $tl ) ) { $link = $tl; }
+							}
+						}
+						if ( ! $link ) { $link = home_url( '/#galerie' ); }
+						?>
+					<a href="<?php echo esc_url( $link ); ?>" class="flex flex-col items-center text-center p-4 rounded-lg transition-all hover:shadow-md cursor-pointer group" data-reveal style="background-color: oklch(0.99 0.005 80);">
 						<span style="color: oklch(0.62 0.12 55);"><?php jipech_service_icon( $svc['key'] ); ?></span>
 						<span class="text-xs font-semibold leading-tight mt-2" style="font-family: 'Montserrat', sans-serif; color: oklch(0.35 0.04 45);"><?php echo esc_html( $svc['name'] ); ?></span>
-						<?php if ( $is_link ) : ?><span class="text-[10px] mt-1 opacity-0 group-hover:opacity-100 transition-opacity" style="color: oklch(0.50 0.10 50);">Zobrazit →</span><?php endif; ?>
-					</<?php echo $tag; // phpcs:ignore ?>>
+						<span class="text-[10px] mt-1 opacity-0 group-hover:opacity-100 transition-opacity" style="color: oklch(0.50 0.10 50);">Zobrazit →</span>
+					</a>
 				<?php endforeach; ?>
 			</div>
 		</div>
@@ -315,11 +321,11 @@ get_header();
 			<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 				<?php
 				$reviews = array(
-					array( 'Ing. Martin Kovář', 'Praha – Vinohrady', 'Kuchyňská linka z masívu', '2024', 'Pan Pecháček nám vyrobil kuchyňskou linku přesně podle našich představ. Práce byla odvedena precizně, termín dodržen a cena odpovídala domluvě. Rozhodně doporučuji.' ),
-					array( 'Jana Horáčková', 'Nymburk', 'Vestavěné skříně do ložnice', '2024', 'Objednali jsme vestavěné skříně do celé ložnice. Výsledek předčil naše očekávání – krásné zpracování, přesné míry, vše sedí na milimetr. Velmi příjemná komunikace.' ),
-					array( 'Petr Šimánek', 'Poděbrady', 'Dubové schodiště', '2023', 'Schodiště z dubového masívu – absolutní třída. Jiří Pecháček je skutečný řemeslník, který svou práci miluje. Každý detail je promyšlený. Schodiště je ozdobou celého domu.' ),
-					array( 'Lucie Marková', 'Mladá Boleslav', 'Dětský pokoj komplet', '2023', 'Dětský pokoj na míru – postele, skříně, psací stůl. Vše krásně sladěné, bezpečné a odolné. Děti jsou nadšené a já taky. Přijde nám, že nábytek vydrží celou generaci.' ),
-					array( 'Tomáš Blažek', 'Kolín', 'Zahradní pergola', '2023', 'Pergola na zahradu – přesně to, co jsme si přáli. Solidní konstrukce, hezké zpracování, rychlá montáž. Letos v létě jsme ji využívali každý den. Výborná práce!' ),
+					array( 'Martin K.', 'Praha – Vinohrady', 'Kuchyňská linka z masívu', '2024', 'Pan Pecháček nám vyrobil kuchyňskou linku přesně podle našich představ. Práce byla odvedena precizně, termín dodržen a cena odpovídala domluvě. Rozhodně doporučuji.' ),
+					array( 'Jana H.', 'Nymburk', 'Vestavěné skříně do ložnice', '2024', 'Objednali jsme vestavěné skříně do celé ložnice. Výsledek předčil naše očekávání – krásné zpracování, přesné míry, vše sedí na milimetr. Velmi příjemná komunikace.' ),
+					array( 'Petr Š.', 'Poděbrady', 'Dubové schodiště', '2023', 'Schodiště z dubového masívu – absolutní třída. Jiří Pecháček je skutečný řemeslník, který svou práci miluje. Každý detail je promyšlený. Schodiště je ozdobou celého domu.' ),
+					array( 'Lucie M.', 'Mladá Boleslav', 'Dětský pokoj komplet', '2023', 'Dětský pokoj na míru – postele, skříně, psací stůl. Vše krásně sladěné, bezpečné a odolné. Děti jsou nadšené a já taky. Přijde nám, že nábytek vydrží celou generaci.' ),
+					array( 'Tomáš B.', 'Kolín', 'Zahradní pergola', '2023', 'Pergola na zahradu – přesně to, co jsme si přáli. Solidní konstrukce, hezké zpracování, rychlá montáž. Letos v létě jsme ji využívali každý den. Výborná práce!' ),
 				);
 				foreach ( $reviews as $r ) : ?>
 					<div class="rounded-xl p-7 flex flex-col gap-4 relative" data-reveal style="background-color: oklch(0.99 0.005 80); box-shadow: 0 2px 16px oklch(0.25 0.04 40 / 0.07);">

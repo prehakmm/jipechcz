@@ -59,15 +59,27 @@
 
   /* ---------- Smooth scroll s offsetem na fixed nav ---------- */
   function initSmoothScroll() {
-    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
-      a.addEventListener("click", function (e) {
-        var id = a.getAttribute("href").slice(1);
-        if (!id) return;
-        var target = document.getElementById(id);
-        if (!target) return;
-        e.preventDefault();
-        target.scrollIntoView({ behavior: "smooth" });
-      });
+    // Delegace na dokument – funguje i pro odkazy zadané jako absolutní URL (home + #kotva).
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest ? e.target.closest("a") : null;
+      if (!a) return;
+      var href = a.getAttribute("href");
+      if (!href) return;
+      var hi = href.indexOf("#");
+      if (hi < 0) return;
+      var id = href.slice(hi + 1);
+      if (!id) return;
+      // odkaz míří na aktuální stránku? (buď "#id", nebo stejná cesta+doména)
+      var samePage = href.charAt(0) === "#" ||
+        (a.pathname === window.location.pathname && a.hostname === window.location.hostname);
+      if (!samePage) return;
+      var target = document.getElementById(id);
+      if (!target) return; // kotva tu není → nech normální přechod
+      e.preventDefault();
+      target.scrollIntoView({ behavior: "smooth" });
+      if (window.history && history.replaceState) {
+        history.replaceState(null, "", "#" + id);
+      }
     });
   }
 
