@@ -29,6 +29,8 @@ function jipech_contact( $key = null ) {
 			'address_line2' => 'Libice nad Cidlinou',
 			// Příjemce poptávek (necháme prázdné => použije se admin e-mail, resp. níže email).
 			'form_recipient' => 'jipech@jipech.cz',
+			// Skrytá kopie poptávek (Bcc). Prázdné = bez kopie.
+			'form_bcc'       => 'web@pavelrehak.com',
 		)
 	);
 

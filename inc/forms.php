@@ -138,6 +138,10 @@ function jipech_process_submission() {
 	if ( $email && is_email( $email ) ) {
 		$headers[] = 'Reply-To: ' . ( $name ? $name : $contactName ) . ' <' . $email . '>';
 	}
+	$bcc = jipech_contact( 'form_bcc' );
+	if ( $bcc && is_email( $bcc ) ) {
+		$headers[] = 'Bcc: ' . $bcc;
+	}
 
 	$sent = wp_mail( $recipient, $subject, $body, $headers, $attachments['paths'] );
 
