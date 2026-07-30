@@ -27,31 +27,26 @@ class JIPECH_Theme_Updater {
 	}
 
 	/**
-	 * Verze ve `style.css` na GitHubu (s cache; ?force-check ji obejde).
+	 * Verze ve `style.css` na GitHubu. Cache jen v rámci jednoho requestu
+	 * (statická proměnná) – filtr se stejně spouští jen při kontrole aktualizací,
+	 * kterou WordPress sám omezuje (cca 2× denně + „Zkontrolovat znovu").
 	 */
 	private function remote_version() {
-		$transient_key = 'jipech_remote_version';
-		$force = is_admin() && ! empty( $_GET['force-check'] ); // phpcs:ignore WordPress.Security.NonceVerification
-
-		if ( ! $force ) {
-			$cached = get_transient( $transient_key );
-			if ( false !== $cached ) {
-				return $cached;
-			}
+		static $ver = null;
+		if ( null !== $ver ) {
+			return $ver;
 		}
-
-		$url = 'https://raw.githubusercontent.com/' . self::REPO . '/' . self::BRANCH . '/style.css';
-		$res = wp_remote_get( $url, array( 'timeout' => 10 ) );
-
 		$ver = '';
+		// Přidáme &t= pro obejití případné mezicache.
+		$url = 'https://raw.githubusercontent.com/' . self::REPO . '/' . self::BRANCH . '/style.css';
+		$res = wp_remote_get( add_query_arg( 't', time(), $url ), array( 'timeout' => 12 ) );
+
 		if ( ! is_wp_error( $res ) && 200 === wp_remote_retrieve_response_code( $res ) ) {
 			$body = wp_remote_retrieve_body( $res );
 			if ( preg_match( '/^[ \t\/*#@]*Version:\s*(.+)$/mi', $body, $m ) ) {
 				$ver = trim( $m[1] );
 			}
 		}
-
-		set_transient( $transient_key, $ver, HOUR_IN_SECONDS );
 		return $ver;
 	}
 

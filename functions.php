@@ -47,7 +47,7 @@ require_once JIPECH_DIR . '/inc/forms.php';
 require_once JIPECH_DIR . '/inc/importer.php';
 require_once JIPECH_DIR . '/inc/importer-fotky.php';
 
-// Aktualizace tématu přímo z GitHubu (bez pluginu) – jen v administraci.
-if ( is_admin() ) {
+// Aktualizace tématu přímo z GitHubu (bez pluginu) – v administraci i při cron kontrole.
+if ( is_admin() || ( function_exists( 'wp_doing_cron' ) && wp_doing_cron() ) ) {
 	require_once JIPECH_DIR . '/inc/updater.php';
 }
