@@ -60,6 +60,7 @@ get_header();
 		<div class="absolute inset-0">
 			<img src="<?php echo esc_url( $hero ); ?>" alt="Truhlářská dílna JIPECH" class="w-full h-full object-cover" />
 			<div class="absolute inset-0" style="background: linear-gradient(135deg, oklch(0.15 0.04 40 / 0.78) 0%, oklch(0.25 0.04 40 / 0.50) 50%, transparent 100%);"></div>
+			<div class="absolute inset-0 md:hidden" style="background: linear-gradient(to bottom, oklch(0.14 0.03 40 / 0.35) 0%, oklch(0.14 0.03 40 / 0.62) 100%);"></div>
 		</div>
 		<div class="container relative z-10 pt-28 pb-16">
 			<div class="max-w-2xl" data-reveal>
@@ -73,7 +74,7 @@ get_header();
 					<a href="<?php echo esc_attr( $phone_href ); ?>" class="flex items-center justify-center gap-3 px-8 py-4 rounded font-bold text-lg transition-all hover:scale-105 shadow-xl" style="background-color: oklch(0.32 0.09 145); color: white; font-family: 'Montserrat', sans-serif;">
 						<?php jipech_icon( 'phone', 22 ); ?><?php echo esc_html( $phone ); ?>
 					</a>
-					<a href="#kontakt" class="flex items-center justify-center gap-2 px-8 py-4 rounded font-semibold text-base transition-all hover:scale-105 border-2" style="border-color: white; color: white; font-family: 'Montserrat', sans-serif; background-color: transparent;">
+					<a href="#kontakt" class="flex items-center justify-center gap-2 px-8 py-4 rounded font-semibold text-base transition-all hover:scale-105 border-2" style="border-color: white; color: white; font-family: 'Montserrat', sans-serif; background-color: oklch(0.18 0.03 40 / 0.40);">
 						Nezávazná poptávka <?php jipech_icon( 'arrow-right', 18 ); ?>
 					</a>
 				</div>
