@@ -74,7 +74,7 @@ get_header();
 					<a href="<?php echo esc_attr( $phone_href ); ?>" class="flex items-center justify-center gap-3 px-8 py-4 rounded font-bold text-lg transition-all hover:scale-105 shadow-xl" style="background-color: oklch(0.32 0.09 145); color: white; font-family: 'Montserrat', sans-serif;">
 						<?php jipech_icon( 'phone', 22 ); ?><?php echo esc_html( $phone ); ?>
 					</a>
-					<a href="#kontakt" class="flex items-center justify-center gap-2 px-8 py-4 rounded font-semibold text-base transition-all hover:scale-105 border-2" style="border-color: white; color: white; font-family: 'Montserrat', sans-serif; background-color: oklch(0.16 0.03 40 / 0.50); text-shadow: 0 1px 4px oklch(0.10 0 0 / 0.55);">
+					<a href="#kontakt" class="flex items-center justify-center gap-2 px-8 py-4 rounded font-semibold text-base transition-all hover:scale-105 shadow-lg" style="color: oklch(0.22 0.03 40); font-family: 'Montserrat', sans-serif; background-color: oklch(0.97 0.01 80);">
 						Nezávazná poptávka <?php jipech_icon( 'arrow-right', 18 ); ?>
 					</a>
 				</div>
