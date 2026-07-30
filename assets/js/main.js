@@ -47,8 +47,13 @@
     document.querySelectorAll("[data-dropdown]").forEach(function (wrap) {
       var menu = wrap.querySelector("[data-dropdown-menu]");
       if (!menu) return;
-      wrap.addEventListener("mouseenter", function () { menu.hidden = false; });
-      wrap.addEventListener("mouseleave", function () { menu.hidden = true; });
+      var timer;
+      function open() { clearTimeout(timer); menu.hidden = false; }
+      function scheduleClose() { clearTimeout(timer); timer = setTimeout(function () { menu.hidden = true; }, 300); }
+      wrap.addEventListener("mouseenter", open);
+      wrap.addEventListener("mouseleave", scheduleClose);
+      menu.addEventListener("mouseenter", open);
+      menu.addEventListener("mouseleave", scheduleClose);
     });
   }
 

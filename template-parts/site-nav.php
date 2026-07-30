@@ -29,7 +29,7 @@ $cats       = jipech_ordered_terms( true );
 					Realizace
 					<svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><path d="M6 8L1 3h10z"></path></svg>
 				</a>
-				<div class="absolute top-full left-0 mt-1 bg-white rounded-lg shadow-xl border border-amber-100 py-2 min-w-[220px] z-50" data-dropdown-menu hidden>
+				<div class="absolute top-full left-0 bg-white rounded-lg shadow-xl border border-amber-100 py-2 min-w-[220px] z-50" data-dropdown-menu hidden>
 					<a href="<?php echo esc_url( $home . '#galerie' ); ?>" class="block w-full text-left px-4 py-2 text-sm font-medium hover:bg-amber-50 transition-colors" style="font-family: 'Montserrat', sans-serif; color: oklch(0.35 0.04 45);">Všechny realizace</a>
 					<?php foreach ( $cats as $term ) : ?>
 						<a href="<?php echo esc_url( get_term_link( $term ) ); ?>" class="block w-full text-left px-4 py-2 text-sm font-medium hover:bg-amber-50 transition-colors" style="font-family: 'Montserrat', sans-serif; color: oklch(0.50 0.10 50);"><?php echo esc_html( $term->name ); ?></a>
