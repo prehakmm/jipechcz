@@ -74,6 +74,24 @@ function jipech_b2b_url() {
 }
 
 /**
+ * Favicon / ikona webu z tématu (pokud není nastavená vlastní ve WP).
+ */
+add_action( 'wp_head', 'jipech_favicon', 2 );
+add_action( 'admin_head', 'jipech_favicon', 2 );
+add_action( 'login_head', 'jipech_favicon', 2 );
+function jipech_favicon() {
+	if ( function_exists( 'has_site_icon' ) && has_site_icon() ) {
+		return; // vlastní ikona webu nastavená v administraci má přednost
+	}
+	$u = JIPECH_URI . '/assets/img/';
+	$v = '?v=' . JIPECH_VERSION;
+	echo '<link rel="icon" href="' . esc_url( $u . 'favicon.ico' . $v ) . '" sizes="any" />' . "\n";
+	echo '<link rel="icon" type="image/png" sizes="32x32" href="' . esc_url( $u . 'favicon-32.png' . $v ) . '" />' . "\n";
+	echo '<link rel="icon" type="image/png" sizes="16x16" href="' . esc_url( $u . 'favicon-16.png' . $v ) . '" />' . "\n";
+	echo '<link rel="apple-touch-icon" href="' . esc_url( $u . 'apple-touch-icon.png' . $v ) . '" />' . "\n";
+}
+
+/**
  * Logo z Media Library (custom-logo), fallback na přiložený obrázek/text.
  */
 function jipech_logo_url() {
