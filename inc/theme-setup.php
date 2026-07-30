@@ -68,6 +68,55 @@ function jipech_kuchyne_url() {
 	return $url ? $url : home_url( '/kuchyne/' );
 }
 
+/**
+ * Zajistí, že existují stránky s šablonami B2B a Kuchyně (jinak je vytvoří).
+ * Řeší mizející /b2b/ – běží jednou (option guard).
+ */
+add_action( 'admin_init', 'jipech_ensure_pages' );
+function jipech_ensure_pages() {
+	if ( get_option( 'jipech_pages_created' ) ) {
+		return;
+	}
+	$pages = array(
+		'template-b2b.php'     => array( 'title' => 'Pro firmy', 'slug' => 'b2b' ),
+		'template-kuchyne.php' => array( 'title' => 'Kuchyně', 'slug' => 'kuchyne' ),
+	);
+	foreach ( $pages as $template => $info ) {
+		// Už existuje stránka s touto šablonou?
+		$existing = get_posts( array(
+			'post_type'   => 'page',
+			'post_status' => 'any',
+			'numberposts' => 1,
+			'fields'      => 'ids',
+			'meta_key'    => '_wp_page_template',
+			'meta_value'  => $template,
+		) );
+		if ( $existing ) {
+			continue;
+		}
+		// Existuje stránka s tímto slugem? Přiřaď jí šablonu.
+		$by_slug = get_page_by_path( $info['slug'] );
+		if ( $by_slug ) {
+			update_post_meta( $by_slug->ID, '_wp_page_template', $template );
+			if ( 'publish' !== $by_slug->post_status ) {
+				wp_update_post( array( 'ID' => $by_slug->ID, 'post_status' => 'publish' ) );
+			}
+			continue;
+		}
+		// Vytvoř novou.
+		$pid = wp_insert_post( array(
+			'post_type'   => 'page',
+			'post_status' => 'publish',
+			'post_title'  => $info['title'],
+			'post_name'   => $info['slug'],
+		) );
+		if ( ! is_wp_error( $pid ) && $pid ) {
+			update_post_meta( $pid, '_wp_page_template', $template );
+		}
+	}
+	update_option( 'jipech_pages_created', 1 );
+}
+
 function jipech_b2b_url() {
 	$url = jipech_page_url_by_template( 'template-b2b.php' );
 	return $url ? $url : home_url( '/b2b/' );
