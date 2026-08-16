@@ -323,13 +323,13 @@ get_header();
 									</div>
 									<div class="relative px-1" data-slider>
 										<div class="relative h-2 rounded-full" style="background-color: oklch(0.82 0.04 65);">
-											<div class="absolute top-0 left-0 h-2 rounded-full" data-slider-fill style="width: 13.79%; background-color: oklch(0.62 0.12 55);"></div>
+											<div class="absolute top-0 left-0 h-2 rounded-full" data-slider-fill style="width: 12.28%; background-color: oklch(0.62 0.12 55);"></div>
 										</div>
-										<input type="range" name="budget" min="10000" max="300000" step="5000" value="50000" class="absolute inset-0 w-full opacity-0 cursor-pointer" style="height: 2rem; top: -0.75rem;" />
-										<div class="absolute top-1/2 w-5 h-5 rounded-full border-2 shadow-md pointer-events-none" data-slider-thumb style="left: calc(13.79% - 10px); top: -5px; background-color: white; border-color: oklch(0.62 0.12 55); box-shadow: 0 2px 6px oklch(0.25 0.04 40 / 0.25);"></div>
+										<input type="range" name="budget" min="15000" max="300000" step="5000" value="50000" class="absolute inset-0 w-full opacity-0 cursor-pointer" style="height: 2rem; top: -0.75rem;" />
+										<div class="absolute top-1/2 w-5 h-5 rounded-full border-2 shadow-md pointer-events-none" data-slider-thumb style="left: calc(12.28% - 10px); top: -5px; background-color: white; border-color: oklch(0.62 0.12 55); box-shadow: 0 2px 6px oklch(0.25 0.04 40 / 0.25);"></div>
 									</div>
 									<div class="flex justify-between mt-3">
-										<span class="text-xs" style="color: oklch(0.55 0.03 50);">10 000 Kč</span>
+										<span class="text-xs" style="color: oklch(0.55 0.03 50);">15 000 Kč</span>
 										<span class="text-xs" style="color: oklch(0.55 0.03 50);">300 000 Kč+</span>
 									</div>
 								</div>
