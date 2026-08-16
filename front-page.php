@@ -152,6 +152,12 @@ get_header();
 					</div>
 				<?php endforeach; ?>
 			</div>
+				<div class="text-center mt-10">
+					<a href="<?php echo esc_url( jipech_contact( 'google_url' ) ); ?>" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-sm font-semibold hover:underline" style="color: oklch(0.35 0.04 45); font-family: 'Montserrat', sans-serif;">
+						<span class="flex gap-0.5"><?php for ( $s = 0; $s < 5; $s++ ) { jipech_icon( 'star', 16, '', 'color: oklch(0.62 0.12 55);', 'oklch(0.62 0.12 55)' ); } ?></span>
+						5,0 · Zobrazit všechny recenze na Google <?php jipech_icon( 'arrow-right', 16 ); ?>
+					</a>
+				</div>
 		</div>
 	</section>
 
@@ -214,23 +220,26 @@ get_header();
 			<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 				<?php
 				$reviews = array(
-					array( 'Martin K.', 'Praha – Vinohrady', 'Kuchyňská linka z masivu', '2024', 'Pan Pecháček nám vyrobil kuchyňskou linku přesně podle našich představ. Práce byla odvedena precizně, termín dodržen a cena odpovídala domluvě. Rozhodně doporučuji.' ),
-					array( 'Jana H.', 'Nymburk', 'Vestavěné skříně do ložnice', '2024', 'Objednali jsme vestavěné skříně do celé ložnice. Výsledek předčil naše očekávání – krásné zpracování, přesné míry, vše sedí na milimetr. Velmi příjemná komunikace.' ),
-					array( 'Petr Š.', 'Poděbrady', 'Dubové schodiště', '2023', 'Schodiště z dubového masivu – absolutní třída. Jiří Pecháček je skutečný řemeslník, který svou práci miluje. Každý detail je promyšlený. Schodiště je ozdobou celého domu.' ),
-					array( 'Lucie M.', 'Mladá Boleslav', 'Dětský pokoj komplet', '2023', 'Dětský pokoj na míru – postele, skříně, psací stůl. Vše krásně sladěné, bezpečné a odolné. Děti jsou nadšené a já taky. Přijde nám, že nábytek vydrží celou generaci.' ),
-					array( 'Tomáš B.', 'Kolín', 'Zahradní pergola', '2023', 'Pergola na zahradu – přesně to, co jsme si přáli. Solidní konstrukce, hezké zpracování, rychlá montáž. Letos v létě jsme ji využívali každý den. Výborná práce!' ),
-				);
-				foreach ( $reviews as $r ) : ?>
-					<div class="rounded-xl p-7 flex flex-col gap-4 relative" data-reveal style="background-color: oklch(0.99 0.005 80); box-shadow: 0 2px 16px oklch(0.25 0.04 40 / 0.07);">
-						<?php jipech_icon( 'quote', 28, 'absolute top-5 right-6 opacity-10', 'color: oklch(0.62 0.12 55);' ); ?>
-						<div class="flex gap-1"><?php for ( $s = 0; $s < 5; $s++ ) { jipech_icon( 'star', 16, '', 'color: oklch(0.62 0.12 55);', 'oklch(0.62 0.12 55)' ); } ?></div>
-						<p class="text-sm leading-relaxed italic" style="color: oklch(0.38 0.03 45);">"<?php echo esc_html( $r[4] ); ?>"</p>
-						<div class="mt-auto pt-3 border-t" style="border-color: oklch(0.90 0.02 70);">
-							<p class="font-bold text-sm" style="font-family: 'Playfair Display', serif;"><?php echo esc_html( $r[0] ); ?></p>
-							<p class="text-xs mt-0.5" style="color: oklch(0.55 0.04 50); font-family: 'Montserrat', sans-serif;"><?php echo esc_html( $r[1] . ' · ' . $r[2] . ' · ' . $r[3] ); ?></p>
+						array( 'Míša Podlipská', 'review-1.png', 'Výborná spolupráce. Velmi spolehlivá komunikace, co se domluvila bylo i dodrženo. Práce odvedena profesionálně, důsledně, s ohledem na bezpečnou manipulaci vůči prvkům interiéru. Jeden z mála řemeslníků, kde vše fungovalo kompetentně. Finanční vyrovnání velmi příznivé. Opravdu moc doporučuji a sama využiji pro další zakázky.' ),
+						array( 'Jan Fedor', 'review-2.png', 'Velmi dobrý a ochotný servis, super kvalita.' ),
+						array( 'Pavel Tomáš Řehák', 'review-3.png', 'S kvalitou zpracování kuchyně a dalšího nábytku jsem naprosto spokojen.' ),
+					);
+					foreach ( $reviews as $r ) : ?>
+						<div class="rounded-xl p-7 flex flex-col gap-4 relative" data-reveal style="background-color: oklch(0.99 0.005 80); box-shadow: 0 2px 16px oklch(0.25 0.04 40 / 0.07);">
+							<?php jipech_icon( 'quote', 28, 'absolute top-5 right-6 opacity-10', 'color: oklch(0.62 0.12 55);' ); ?>
+							<div class="flex items-center gap-3">
+								<img src="<?php echo esc_url( JIPECH_URI . '/assets/img/reviews/' . $r[1] ); ?>" alt="<?php echo esc_attr( $r[0] ); ?>" class="w-11 h-11 rounded-full object-cover shrink-0" loading="lazy" />
+								<div>
+									<p class="font-bold text-sm" style="font-family: 'Playfair Display', serif;"><?php echo esc_html( $r[0] ); ?></p>
+									<div class="flex gap-0.5 mt-0.5"><?php for ( $s = 0; $s < 5; $s++ ) { jipech_icon( 'star', 14, '', 'color: oklch(0.62 0.12 55);', 'oklch(0.62 0.12 55)' ); } ?></div>
+								</div>
+							</div>
+							<p class="text-sm leading-relaxed italic" style="color: oklch(0.38 0.03 45);">"<?php echo esc_html( $r[2] ); ?>"</p>
+							<div class="mt-auto pt-3 border-t flex items-center gap-1.5" style="border-color: oklch(0.90 0.02 70);">
+								<svg width="14" height="14" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg><span class="text-xs" style="color: oklch(0.55 0.04 50); font-family: 'Montserrat', sans-serif;">Recenze z Google</span>
+							</div>
 						</div>
-					</div>
-				<?php endforeach; ?>
+					<?php endforeach; ?>
 			</div>
 		</div>
 	</section>
@@ -266,6 +275,10 @@ get_header();
 								<?php jipech_icon( 'mail', 20, 'mt-0.5 shrink-0', 'color: oklch(0.62 0.12 55);' ); ?>
 								<div><p class="text-xs uppercase tracking-wider mb-1" style="font-family: 'Montserrat', sans-serif; color: oklch(0.55 0.05 50);">Email</p><a href="mailto:<?php echo esc_attr( $email ); ?>" class="font-semibold hover:underline" style="color: oklch(0.35 0.04 45);"><?php echo esc_html( $email ); ?></a></div>
 							</div>
+								<div class="flex items-start gap-4">
+									<?php jipech_icon( 'file-text', 20, 'mt-0.5 shrink-0', 'color: oklch(0.62 0.12 55);' ); ?>
+									<div><p class="text-xs uppercase tracking-wider mb-1" style="font-family: 'Montserrat', sans-serif; color: oklch(0.55 0.05 50);">IČ / DIČ</p><p class="font-semibold"><?php echo esc_html( jipech_contact( 'ic' ) ); ?> / <?php echo esc_html( jipech_contact( 'dic' ) ); ?></p></div>
+								</div>
 						</div>
 					</div>
 				</div>

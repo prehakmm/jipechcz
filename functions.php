@@ -25,6 +25,8 @@ function jipech_contact( $key = null ) {
 			'phone_href'    => '+420603265873',
 			'email'         => 'jipech@jipech.cz',
 			'company'       => 'Truhlářství Jiří Pecháček',
+			'ic'            => '67612229',
+			'dic'           => 'CZ7002015757',
 			'address_line1' => 'Kostelní 47, 289 07',
 			'address_line2' => 'Libice nad Cidlinou',
 			// Příjemce poptávek (necháme prázdné => použije se admin e-mail, resp. níže email).
@@ -33,8 +35,8 @@ function jipech_contact( $key = null ) {
 			'form_bcc'       => 'web@pavelrehak.com',
 			// Google hodnocení (hero). Vyplňte rating a počet recenzí.
 			'google_url'     => 'https://www.google.com/maps/place/Truhl%C3%A1%C5%99stv%C3%AD+Ji%C5%99%C3%AD+Pech%C3%A1%C4%8Dek/data=!4m8!3m7!1s0x470c110a26828397:0x470b13df16bb5918!9m1!1b1',
-			'google_rating'  => '',
-			'google_reviews' => '',
+			'google_rating'  => '5,0',
+			'google_reviews' => '3',
 		)
 	);
 

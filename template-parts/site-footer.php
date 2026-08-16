@@ -37,6 +37,7 @@ $b2b_url    = jipech_b2b_url();
 					<div class="flex items-center gap-2"><?php jipech_icon( 'phone', 14, '', 'color: oklch(0.62 0.12 55);' ); ?><a href="<?php echo esc_attr( $phone_href ); ?>" class="text-sm font-bold hover:underline" style="color: white;"><?php echo esc_html( $phone ); ?></a></div>
 					<div class="flex items-center gap-2"><?php jipech_icon( 'mail', 14, '', 'color: oklch(0.62 0.12 55);' ); ?><a href="mailto:<?php echo esc_attr( $email ); ?>" class="text-sm hover:underline" style="color: oklch(0.72 0.02 70);"><?php echo esc_html( $email ); ?></a></div>
 					<div class="flex items-start gap-2"><?php jipech_icon( 'map-pin', 14, 'mt-0.5 shrink-0', 'color: oklch(0.62 0.12 55);' ); ?><span class="text-sm" style="color: oklch(0.72 0.02 70);"><?php echo esc_html( jipech_contact( 'address_line1' ) ); ?><br /><?php echo esc_html( jipech_contact( 'address_line2' ) ); ?></span></div>
+					<div class="flex items-start gap-2"><?php jipech_icon( 'file-text', 14, 'mt-0.5 shrink-0', 'color: oklch(0.62 0.12 55);' ); ?><span class="text-sm" style="color: oklch(0.72 0.02 70);">IČ: <?php echo esc_html( jipech_contact( 'ic' ) ); ?><br />DIČ: <?php echo esc_html( jipech_contact( 'dic' ) ); ?></span></div>
 				</div>
 			</div>
 		</div>
