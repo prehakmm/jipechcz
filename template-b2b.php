@@ -264,7 +264,7 @@ get_header();
 	<footer style="background-color: oklch(0.18 0.03 40);" class="py-8">
 		<div class="container flex flex-col sm:flex-row items-center justify-between gap-4">
 			<div class="flex items-center gap-4">
-				<img src="<?php echo esc_url( $logo ); ?>" alt="JIPECH" class="h-12 w-auto" style="filter: brightness(1.2);" />
+				<img src="<?php echo esc_url( jipech_asset( 'logo_light' ) ); ?>" alt="JIPECH" class="h-12 w-auto" />
 				<div>
 					<p class="text-sm font-semibold" style="color: white;">Truhlářství Jiří Pecháček</p>
 					<p class="text-xs" style="color: oklch(0.65 0.02 60);"><?php echo esc_html( jipech_contact( 'address_line1' ) . ' ' . jipech_contact( 'address_line2' ) ); ?></p>

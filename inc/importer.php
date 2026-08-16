@@ -69,6 +69,13 @@ function jipech_import_posts() {
  * URL šablonového obrázku – z Media Library, fallback na CDN.
  */
 function jipech_asset( $key ) {
+	// Logo přibalené v tématu má přednost (průhledné PNG – tmavé pro lištu, světlé pro patičku).
+	if ( 'logo' === $key && file_exists( JIPECH_DIR . '/assets/img/logo.png' ) ) {
+		return JIPECH_URI . '/assets/img/logo.png?v=' . JIPECH_VERSION;
+	}
+	if ( 'logo_light' === $key && file_exists( JIPECH_DIR . '/assets/img/logo-light.png' ) ) {
+		return JIPECH_URI . '/assets/img/logo-light.png?v=' . JIPECH_VERSION;
+	}
 	$id = get_option( 'jipech_asset_' . $key );
 	if ( $id ) {
 		$url = wp_get_attachment_url( $id );

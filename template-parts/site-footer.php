@@ -17,7 +17,7 @@ $b2b_url    = jipech_b2b_url();
 	<div class="container">
 		<div class="grid sm:grid-cols-3 gap-8 mb-8">
 			<div>
-				<img src="<?php echo esc_url( $logo ); ?>" alt="JIPECH" class="h-16 w-auto mb-4" style="filter: brightness(1.2);" />
+				<img src="<?php echo esc_url( jipech_asset( 'logo_light' ) ); ?>" alt="JIPECH" class="h-16 w-auto mb-4" />
 				<p class="text-sm leading-relaxed" style="color: oklch(0.65 0.02 60);">Truhlářství Jiří Pecháček – poctivá řemeslná výroba nábytku na míru od roku 1997.</p>
 			</div>
 			<div>

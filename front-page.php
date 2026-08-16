@@ -66,7 +66,7 @@ get_header();
 			<div class="max-w-2xl" data-reveal>
 				<p class="section-label mb-4" style="color: oklch(0.85 0.10 60);">Truhlářství od roku 1997</p>
 				<h1 class="text-5xl md:text-7xl font-bold leading-tight mb-6" style="font-family: 'Playfair Display', serif; color: white; text-shadow: 0 2px 20px oklch(0.1 0 0 / 0.5);">
-					Nábytek<br /><em style="color: oklch(0.85 0.12 60);">z masívu</em>
+					Nábytek<br /><em style="color: oklch(0.85 0.12 60);">z masivu</em>
 				</h1>
 				<p class="text-xl mb-2" style="color: oklch(0.90 0.02 80); font-family: 'Source Sans 3', sans-serif;">100 % dřevo, originální vzhled</p>
 				<p class="text-base mb-10 max-w-lg" style="color: oklch(0.82 0.02 80); font-family: 'Source Sans 3', sans-serif;">Pečlivě zpracovaný nábytek na míru přesně podle vašich představ. Kuchyně, schody, okna, vestavěný nábytek – vše z kvalitního dřeva.</p>
@@ -114,7 +114,7 @@ get_header();
 			<div class="grid md:grid-cols-2 gap-6 mb-14">
 				<div class="rounded-lg p-8" data-reveal="left" style="background-color: oklch(0.88 0.04 55);">
 					<p class="section-label mb-2">Prémiová kategorie</p>
-					<h3 class="text-3xl font-bold mb-3" style="font-family: 'Playfair Display', serif;">Nábytek z masívu</h3>
+					<h3 class="text-3xl font-bold mb-3" style="font-family: 'Playfair Display', serif;">Nábytek z masivu</h3>
 					<p class="text-base leading-relaxed mb-4" style="color: oklch(0.35 0.04 45);">100 % dřevo, originální vzhled. Masivní dřevo využíváme při výrobě oken, dveří, schodů a exkluzivního nábytku.</p>
 					<a href="#kontakt" class="btn-primary inline-block">Nezávazně poptat</a>
 				</div>
@@ -322,9 +322,9 @@ get_header();
 			<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 				<?php
 				$reviews = array(
-					array( 'Martin K.', 'Praha – Vinohrady', 'Kuchyňská linka z masívu', '2024', 'Pan Pecháček nám vyrobil kuchyňskou linku přesně podle našich představ. Práce byla odvedena precizně, termín dodržen a cena odpovídala domluvě. Rozhodně doporučuji.' ),
+					array( 'Martin K.', 'Praha – Vinohrady', 'Kuchyňská linka z masivu', '2024', 'Pan Pecháček nám vyrobil kuchyňskou linku přesně podle našich představ. Práce byla odvedena precizně, termín dodržen a cena odpovídala domluvě. Rozhodně doporučuji.' ),
 					array( 'Jana H.', 'Nymburk', 'Vestavěné skříně do ložnice', '2024', 'Objednali jsme vestavěné skříně do celé ložnice. Výsledek předčil naše očekávání – krásné zpracování, přesné míry, vše sedí na milimetr. Velmi příjemná komunikace.' ),
-					array( 'Petr Š.', 'Poděbrady', 'Dubové schodiště', '2023', 'Schodiště z dubového masívu – absolutní třída. Jiří Pecháček je skutečný řemeslník, který svou práci miluje. Každý detail je promyšlený. Schodiště je ozdobou celého domu.' ),
+					array( 'Petr Š.', 'Poděbrady', 'Dubové schodiště', '2023', 'Schodiště z dubového masivu – absolutní třída. Jiří Pecháček je skutečný řemeslník, který svou práci miluje. Každý detail je promyšlený. Schodiště je ozdobou celého domu.' ),
 					array( 'Lucie M.', 'Mladá Boleslav', 'Dětský pokoj komplet', '2023', 'Dětský pokoj na míru – postele, skříně, psací stůl. Vše krásně sladěné, bezpečné a odolné. Děti jsou nadšené a já taky. Přijde nám, že nábytek vydrží celou generaci.' ),
 					array( 'Tomáš B.', 'Kolín', 'Zahradní pergola', '2023', 'Pergola na zahradu – přesně to, co jsme si přáli. Solidní konstrukce, hezké zpracování, rychlá montáž. Letos v létě jsme ji využívali každý den. Výborná práce!' ),
 				);
