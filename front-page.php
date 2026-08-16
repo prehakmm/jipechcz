@@ -69,6 +69,102 @@ get_header();
 				</h1>
 				<p class="text-xl mb-2" style="color: oklch(0.90 0.02 80); font-family: 'Source Sans 3', sans-serif;">100 % dřevo, originální vzhled</p>
 				<p class="text-base mb-10 max-w-lg" style="color: oklch(0.82 0.02 80); font-family: 'Source Sans 3', sans-serif;">Pečlivě zpracovaný nábytek na míru přesně podle vašich představ. Kuchyně, schody, okna, vestavěný nábytek – vše z kvalitního dřeva.</p>
+				<div class="flex flex-col sm:flex-row gap-4">
+					<a href="<?php echo esc_attr( $phone_href ); ?>" class="flex items-center justify-center gap-3 px-8 py-4 rounded font-bold text-lg transition-all hover:scale-105 shadow-xl" style="background-color: oklch(0.32 0.09 145); color: white; font-family: 'Montserrat', sans-serif;">
+						<?php jipech_icon( 'phone', 22 ); ?><?php echo esc_html( $phone ); ?>
+					</a>
+					<a href="#kontakt" class="flex items-center justify-center gap-2 px-8 py-4 rounded font-semibold text-base transition-all hover:scale-105 shadow-lg" style="color: oklch(0.22 0.03 40); font-family: 'Montserrat', sans-serif; background-color: oklch(0.97 0.01 80);">
+						Nezávazná poptávka <?php jipech_icon( 'arrow-right', 18 ); ?>
+					</a>
+				</div>
+				<div class="flex flex-wrap items-center gap-8 mt-10">
+					<div class="text-center"><div class="text-3xl font-bold" style="font-family: 'Playfair Display', serif; color: oklch(0.85 0.12 60);">29+</div><div class="text-xs uppercase tracking-wider" style="color: oklch(0.75 0.02 80); font-family: 'Montserrat', sans-serif;">let zkušeností</div></div>
+					<a href="<?php echo esc_url( jipech_contact( 'google_url' ) ); ?>" target="_blank" rel="noopener" class="text-center group">
+						<div class="flex gap-0.5 justify-center mb-1"><?php for ( $s = 0; $s < 5; $s++ ) { jipech_icon( 'star', 18, '', 'color: oklch(0.85 0.12 60);', 'oklch(0.85 0.12 60)' ); } ?></div>
+						<div class="text-xs uppercase tracking-wider group-hover:underline" style="color: oklch(0.75 0.02 80); font-family: 'Montserrat', sans-serif;"><?php echo esc_html( jipech_contact( 'google_rating' ) ); ?> · Google recenze</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+			<?php jipech_icon( 'chevron-down', 32, '', 'color: oklch(0.85 0.10 60);' ); ?>
+		</div>
+	</section>
+
+	<!-- ===== SERVICES ===== -->
+	<section id="sluzby" class="py-20">
+		<div class="container">
+			<div class="text-center mb-14">
+				<p class="section-label mb-3">Co vyrábíme</p>
+				<h2 class="text-4xl md:text-5xl font-bold" style="font-family: 'Playfair Display', serif;">Naše služby</h2>
+				<hr class="wood-divider mt-6 max-w-xs mx-auto" />
+			</div>
+			<div class="grid md:grid-cols-2 gap-6 mb-14">
+				<div class="rounded-lg p-8" data-reveal="left" style="background-color: oklch(0.88 0.04 55);">
+					<p class="section-label mb-2">Interiér</p>
+					<h3 class="text-3xl font-bold mb-3" style="font-family: 'Playfair Display', serif;">Nábytek</h3>
+					<p class="text-base leading-relaxed mb-4" style="color: oklch(0.35 0.04 45);">Kuchyňské linky, vestavěné a šatní skříně, stoly, postele, dětský i kancelářský nábytek. Vyrábíme z masivu i deskových materiálů přesně na míru vašemu prostoru.</p>
+					<a href="#kontakt" class="btn-primary inline-block">Nezávazně poptat</a>
+				</div>
+				<div class="rounded-lg p-8" data-reveal="right" style="background-color: oklch(0.93 0.02 70);">
+					<p class="section-label mb-2">Stavební truhlářství</p>
+					<h3 class="text-3xl font-bold mb-3" style="font-family: 'Playfair Display', serif;">Stavební truhlářské prvky</h3>
+					<p class="text-base leading-relaxed mb-4" style="color: oklch(0.35 0.04 45);">Okna, dveře, schodiště, dřevěné obklady, altány a pergoly. Masivní dřevo zpracované s důrazem na preciznost a dlouhou životnost.</p>
+					<a href="#kontakt" class="btn-primary inline-block">Nezávazně poptat</a>
+				</div>
+			</div>
+			<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-4">
+				<?php foreach ( $services as $svc ) :
+					$link = '';
+						if ( ! empty( $svc['cat'] ) ) {
+							$t = get_term_by( 'slug', $svc['cat'], 'jipech_kategorie' );
+							if ( $t && ! is_wp_error( $t ) ) {
+								$tl = get_term_link( $t );
+								if ( ! is_wp_error( $tl ) ) { $link = $tl; }
+							}
+						}
+						if ( ! $link ) { $link = home_url( '/#galerie' ); }
+						?>
+					<a href="<?php echo esc_url( $link ); ?>" class="flex flex-col items-center text-center p-4 rounded-lg transition-all hover:shadow-md cursor-pointer group" data-reveal style="background-color: oklch(0.99 0.005 80);">
+						<span style="color: oklch(0.62 0.12 55);"><?php jipech_service_icon( $svc['key'] ); ?></span>
+						<span class="text-xs font-semibold leading-tight mt-2" style="font-family: 'Montserrat', sans-serif; color: oklch(0.35 0.04 45);"><?php echo esc_html( $svc['name'] ); ?></span>
+						<span class="text-[10px] mt-1 opacity-0 group-hover:opacity-100 transition-opacity" style="color: oklch(0.50 0.10 50);">Zobrazit →</span>
+					</a>
+				<?php endforeach; ?>
+			</div>
+		</div>
+	</section>
+
+	<!-- ===== WORKSHOP BANNER ===== -->
+	<section class="relative py-24 overflow-hidden">
+		<div class="absolute inset-0">
+			<img src="<?php echo esc_url( $workshop ); ?>" alt="Truhlářská dílna" class="w-full h-full object-cover" style="object-position: center 40%;" />
+			<div class="absolute inset-0" style="background: oklch(0.15 0.04 40 / 0.72);"></div>
+		</div>
+		<div class="container relative z-10 text-center">
+			<div data-reveal="scale">
+				<h2 class="text-4xl md:text-5xl font-bold mb-4" style="font-family: 'Playfair Display', serif; color: white;">Dobře odvedená práce</h2>
+				<p class="text-xl max-w-2xl mx-auto mb-8" style="color: oklch(0.85 0.02 80);">…je u nás samozřejmostí a cílem. Naši zákazníci jsou s výsledkem práce vždy spokojeni a mají důvod se k nám pravidelně vracet.</p>
+				<div class="mb-8 flex justify-center">
+					<img src="<?php echo esc_url( $cedule ); ?>" alt="České řemeslo – Kvalita od roku 1997" style="width: 220px; height: auto; border-radius: 4px; box-shadow: 0 4px 16px oklch(0.08 0.02 40 / 0.6);" />
+				</div>
+				<div class="block">
+					<a href="#galerie" class="inline-flex items-center gap-2 px-8 py-4 rounded font-semibold transition-all hover:scale-105" style="background-color: oklch(0.62 0.12 55); color: white; font-family: 'Montserrat', sans-serif;">Galerie nábytku <?php jipech_icon( 'arrow-right', 18 ); ?></a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- ===== ABOUT ===== -->
+	<section id="o-nas" class="py-20">
+		<div class="container">
+			<div class="grid md:grid-cols-2 gap-16 items-center">
+				<div data-reveal="left">
+					<p class="section-label mb-3">O nás</p>
+					<h2 class="text-4xl md:text-5xl font-bold mb-6" style="font-family: 'Playfair Display', serif;">Pečlivost.<br />Kvalita.<br />Spokojenost.</h2>
+					<p class="text-lg leading-relaxed mb-4" style="color: oklch(0.40 0.03 45);">Na českém trhu působíme již <strong>29 let, od roku 1997</strong>. Naše truhlářské zkušenosti lze měřit letokruhy stromů.</p>
+					<p class="text-base leading-relaxed mb-4" style="color: oklch(0.40 0.03 45);">Nebojíme se práce s <strong>masivem</strong>, který využíváme při výrobě oken, dveří i schodů. Najdete u nás také <strong>deskový materiál</strong>, ze kterého zpracováváme kuchyňské linky, skříně a další nábytek na míru přesně podle vašeho přání.</p>
+					<p class="text-base leading-relaxed mb-8" style="color: oklch(0.40 0.03 45);">Celou naši nabídku jsme rozšířili o dětský nábytek, postele a v neposlední řadě také o pokládání dřevěných podlah.</p>
 				</div>
 				<div class="relative" data-reveal="right">
 					<div class="rounded-lg overflow-hidden shadow-2xl w-full" style="height: 480px; position: relative;">
@@ -153,9 +249,9 @@ get_header();
 				<?php endforeach; ?>
 			</div>
 				<div class="text-center mt-10">
-					<a href="<?php echo esc_url( jipech_contact( 'google_url' ) ); ?>" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-sm font-semibold hover:underline" style="color: oklch(0.35 0.04 45); font-family: 'Montserrat', sans-serif;">
-						<span class="flex gap-0.5"><?php for ( $s = 0; $s < 5; $s++ ) { jipech_icon( 'star', 16, '', 'color: oklch(0.62 0.12 55);', 'oklch(0.62 0.12 55)' ); } ?></span>
-						5,0 · Zobrazit všechny recenze na Google <?php jipech_icon( 'arrow-right', 16 ); ?>
+					<a href="<?php echo esc_url( jipech_contact( 'google_url' ) ); ?>" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-sm font-semibold hover:underline" style="color: oklch(0.85 0.10 60); font-family: 'Montserrat', sans-serif;">
+						<span class="flex gap-0.5"><?php for ( $s = 0; $s < 5; $s++ ) { jipech_icon( 'star', 16, '', 'color: oklch(0.85 0.12 60);', 'oklch(0.85 0.12 60)' ); } ?></span>
+						<?php echo esc_html( jipech_contact( 'google_rating' ) ); ?> · Zobrazit všechny recenze na Google <?php jipech_icon( 'arrow-right', 16 ); ?>
 					</a>
 				</div>
 		</div>
@@ -240,6 +336,12 @@ get_header();
 							</div>
 						</div>
 					<?php endforeach; ?>
+			</div>
+			<div class="text-center mt-10">
+				<a href="<?php echo esc_url( jipech_contact( 'google_url' ) ); ?>" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-sm font-semibold hover:underline" style="color: oklch(0.35 0.04 45); font-family: 'Montserrat', sans-serif;">
+					<span class="flex gap-0.5"><?php for ( $s = 0; $s < 5; $s++ ) { jipech_icon( 'star', 16, '', 'color: oklch(0.62 0.12 55);', 'oklch(0.62 0.12 55)' ); } ?></span>
+					<?php echo esc_html( jipech_contact( 'google_rating' ) ); ?> · Zobrazit všechny recenze na Google <?php jipech_icon( 'arrow-right', 16 ); ?>
+				</a>
 			</div>
 		</div>
 	</section>
